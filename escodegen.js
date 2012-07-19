@@ -53,7 +53,8 @@
         newline,
         space,
         extra,
-        parse;
+        parse,
+        photoshop;
 
     Syntax = {
         AssignmentExpression: 'AssignmentExpression',
@@ -168,7 +169,8 @@
                 hexadecimal: false,
                 quotes: 'single',
                 escapeless: false,
-                compact: false
+                compact: false,
+                photoshop: false
             }
         };
     }
@@ -612,7 +614,7 @@
 
         case Syntax.ConditionalExpression:
             allowIn |= (Precedence.Conditional < precedence);
-            result = parenthesize(
+            result = (photoshop ? '(' : '') + parenthesize(
                 generateExpression(expr.test, {
                     precedence: Precedence.LogicalOR,
                     allowIn: allowIn,
@@ -627,7 +629,7 @@
                         precedence: Precedence.Assignment,
                         allowIn: allowIn,
                         allowCall: true
-                    }),
+                    }) + (photoshop ? ')' : ''),
                 Precedence.Conditional,
                 precedence
             );
@@ -1459,6 +1461,7 @@
             space = ' ';
         }
         parse = json ? null : options.parse;
+        photoshop = options.format.photoshop;
         extra = options;
 
         switch (node.type) {
