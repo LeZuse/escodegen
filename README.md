@@ -3,6 +3,8 @@ Escodegen ([escodegen](http://github.com/Constellation/escodegen)) is
 (also popularly known as [JavaScript](http://en.wikipedia.org/wiki/JavaScript>JavaScript))
 code generator from [Parser API](https://developer.mozilla.org/en/SpiderMonkey/Parser_API) AST.
 
+This fork introduces support for Photoshop's wrong/limited ECMAScript implementation.
+
 Escodegen can be used in a web browser:
 
     <script src="escodegen.js"></script>
